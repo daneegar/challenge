@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var ScrolView: UIScrollView!
     @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var PasswordInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField!
 
     
     override func viewDidLoad() {
@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK - notification center
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboadWasShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -38,11 +39,24 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    
+    //MARK - autorization
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
+        let typedLogin = loginInput.text!
+        let typedPassword = passwordInput.text!
+        autorization(login: typedLogin, password: typedPassword)
     }
     
+    func autorization(login: String, password: String){
+        if login == "admin" && password == "123456"{
+            print("Успешная авторизация")
+        } else {
+             print("неспешная авторизация")
+        }
+    }
+   
+    
+    //MARK - keyboards events
     @objc func keyboadWasShown (notification: Notification) {
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
