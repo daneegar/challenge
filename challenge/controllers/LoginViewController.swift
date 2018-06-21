@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
 
+    var autorisationStatus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,10 @@ class LoginViewController: UIViewController {
     func autorization(login: String, password: String){
         if login == "admin" && password == "123456"{
             print("Успешная авторизация")
+            autorisationStatus = true
         } else {
              print("неспешная авторизация")
+            autorisationStatus = false
         }
     }
    
@@ -74,6 +77,20 @@ class LoginViewController: UIViewController {
     
     @objc func hideKeyboard() {
         self.ScrolView?.endEditing(true)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "userLogined"{
+            let destinatinoVC = segue.destination as! LoginStatusViewController
+            
+//            if autorisationStatus {
+//                //destinatinoVC.buttonStatus.setTitle("Success", for: .normal)
+//                autorisationStatus = false
+//            }
+            
+            print("Segue Prepered")
+        }
     }
     
 }
