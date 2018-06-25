@@ -8,16 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		9207B6F620D4CFD1007B3343 /* LoginStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */; };
+		9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246DE7520E11B0B00172989 /* UITVCellFriend.swift */; };
 		9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D25E20D40C0200D8C86F /* AppDelegate.swift */; };
 		9287D26120D40C0200D8C86F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D26020D40C0200D8C86F /* LoginViewController.swift */; };
 		9287D26420D40C0200D8C86F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9287D26220D40C0200D8C86F /* Main.storyboard */; };
 		9287D26620D40C0200D8C86F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9287D26520D40C0200D8C86F /* Assets.xcassets */; };
 		9287D26920D40C0200D8C86F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9287D26720D40C0200D8C86F /* LaunchScreen.storyboard */; };
 		9287D27420D40E0300D8C86F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9287D27320D40E0300D8C86F /* Default-568h@2x.png */; };
+		92BDE50720E1344D005BEB8F /* TVCintrollerFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE50620E1344D005BEB8F /* TVCintrollerFriends.swift */; };
+		92BDE50920E13492005BEB8F /* CVControllerPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE50820E13492005BEB8F /* CVControllerPhotos.swift */; };
+		92BDE50B20E134D3005BEB8F /* TVControllerMyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE50A20E134D3005BEB8F /* TVControllerMyGroups.swift */; };
+		92BDE50D20E1352C005BEB8F /* TVControllersAllGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE50C20E1352C005BEB8F /* TVControllersAllGroups.swift */; };
+		92BDE50F20E135A4005BEB8F /* UITVCellOfMyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE50E20E135A4005BEB8F /* UITVCellOfMyGroup.swift */; };
+		92BDE51120E136B6005BEB8F /* UITVCellOfAllGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE51020E136B6005BEB8F /* UITVCellOfAllGroup.swift */; };
+		92BDE51320E137A0005BEB8F /* UICCPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BDE51220E137A0005BEB8F /* UICCPhoto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusViewController.swift; sourceTree = "<group>"; };
+		9246DE7520E11B0B00172989 /* UITVCellFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellFriend.swift; sourceTree = "<group>"; };
 		9287D25B20D40C0200D8C86F /* challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9287D25E20D40C0200D8C86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9287D26020D40C0200D8C86F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +35,13 @@
 		9287D26820D40C0200D8C86F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9287D26A20D40C0200D8C86F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9287D27320D40E0300D8C86F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		92BDE50620E1344D005BEB8F /* TVCintrollerFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCintrollerFriends.swift; sourceTree = "<group>"; };
+		92BDE50820E13492005BEB8F /* CVControllerPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVControllerPhotos.swift; sourceTree = "<group>"; };
+		92BDE50A20E134D3005BEB8F /* TVControllerMyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVControllerMyGroups.swift; sourceTree = "<group>"; };
+		92BDE50C20E1352C005BEB8F /* TVControllersAllGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVControllersAllGroups.swift; sourceTree = "<group>"; };
+		92BDE50E20E135A4005BEB8F /* UITVCellOfMyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellOfMyGroup.swift; sourceTree = "<group>"; };
+		92BDE51020E136B6005BEB8F /* UITVCellOfAllGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellOfAllGroup.swift; sourceTree = "<group>"; };
+		92BDE51220E137A0005BEB8F /* UICCPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICCPhoto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				9287D26220D40C0200D8C86F /* Main.storyboard */,
+				92BDE51220E137A0005BEB8F /* UICCPhoto.swift */,
+				92BDE51020E136B6005BEB8F /* UITVCellOfAllGroup.swift */,
+				92BDE50E20E135A4005BEB8F /* UITVCellOfMyGroup.swift */,
+				9246DE7520E11B0B00172989 /* UITVCellFriend.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -80,6 +100,10 @@
 		9287D27120D40C4400D8C86F /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92BDE50C20E1352C005BEB8F /* TVControllersAllGroups.swift */,
+				92BDE50A20E134D3005BEB8F /* TVControllerMyGroups.swift */,
+				92BDE50820E13492005BEB8F /* CVControllerPhotos.swift */,
+				92BDE50620E1344D005BEB8F /* TVCintrollerFriends.swift */,
 				9287D26020D40C0200D8C86F /* LoginViewController.swift */,
 				9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */,
 			);
@@ -166,9 +190,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92BDE50B20E134D3005BEB8F /* TVControllerMyGroups.swift in Sources */,
+				92BDE50D20E1352C005BEB8F /* TVControllersAllGroups.swift in Sources */,
+				92BDE50720E1344D005BEB8F /* TVCintrollerFriends.swift in Sources */,
+				92BDE50920E13492005BEB8F /* CVControllerPhotos.swift in Sources */,
 				9287D26120D40C0200D8C86F /* LoginViewController.swift in Sources */,
 				9207B6F620D4CFD1007B3343 /* LoginStatusViewController.swift in Sources */,
+				92BDE51320E137A0005BEB8F /* UICCPhoto.swift in Sources */,
 				9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */,
+				9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */,
+				92BDE51120E136B6005BEB8F /* UITVCellOfAllGroup.swift in Sources */,
+				92BDE50F20E135A4005BEB8F /* UITVCellOfMyGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
