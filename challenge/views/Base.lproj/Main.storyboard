@@ -240,7 +240,13 @@
                             <outlet property="delegate" destination="LIE-8R-5i6" id="Wd9-Fd-RyS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Друзья" id="3CF-Ce-Oad" customClass="TVFriends"/>
+                    <navigationItem key="navigationItem" title="Друзья" id="3CF-Ce-Oad" customClass="TVFriends">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RQu-Eg-gsy">
+                            <connections>
+                                <action selector="addFriend:" destination="LIE-8R-5i6" id="uv7-sg-caX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXZ-iX-HNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
