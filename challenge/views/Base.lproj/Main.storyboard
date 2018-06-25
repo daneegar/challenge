@@ -231,6 +231,7 @@
                                 <connections>
                                     <outlet property="friendsImage" destination="fG1-y6-4vL" id="ezV-OE-7gH"/>
                                     <outlet property="friendsName" destination="K9A-m8-cfl" id="Ksf-Ih-ZGz"/>
+                                    <segue destination="9eg-X9-S33" kind="show" identifier="showPhotosColletcion" id="6zY-qo-0Ic"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -240,19 +241,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Друзья" id="3CF-Ce-Oad" customClass="TVFriends"/>
-                    <connections>
-                        <segue destination="9eg-X9-S33" kind="show" id="gWh-xC-Zaw"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXZ-iX-HNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2832.8000000000002" y="33.733133433283363"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Title-->
         <scene sceneID="PIb-nL-TaV">
             <objects>
-                <collectionViewController id="9eg-X9-S33" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dxz-TS-h2E" customClass="CVControllerPhotos">
+                <collectionViewController id="9eg-X9-S33" customClass="CVControllerPhotos" customModule="challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dxz-TS-h2E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -291,6 +289,7 @@
                             <outlet property="delegate" destination="9eg-X9-S33" id="fn6-de-FHQ"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Title" id="OUf-QX-TFW"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqg-6g-zsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

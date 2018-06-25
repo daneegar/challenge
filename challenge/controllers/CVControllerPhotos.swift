@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class CVControllerPhotos: UICollectionViewController {
-    let name: String? = nil
+    var name: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         title = name
