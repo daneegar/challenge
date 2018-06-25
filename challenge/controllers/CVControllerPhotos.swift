@@ -11,9 +11,10 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class CVControllerPhotos: UICollectionViewController {
-
+    let name: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = name
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
