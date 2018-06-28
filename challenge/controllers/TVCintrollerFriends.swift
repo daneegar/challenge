@@ -9,16 +9,17 @@
 import UIKit
 
 class TVCintrollerFriends: UITableViewController {
+    var token: String? = ""
+ 
+    
     var friends: [String] = ["Denis", "Vasilivar", "Marina", "Alyona", "Tatyana"]
     var selectedItemName: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        let responser = transportProtocol(token!)
+        responser.loadFriendPhoto()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,7 +80,6 @@ class TVCintrollerFriends: UITableViewController {
             alertTextField = AlertTextInput
         }
         present(alertForNameanItem, animated: true)
-        
 
     }
     

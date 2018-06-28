@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jor-YJ-ywb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -167,6 +167,41 @@
             </objects>
             <point key="canvasLocation" x="80.799999999999997" y="33.733133433283363"/>
         </scene>
+        <!--LoginVK-->
+        <scene sceneID="g6d-yG-NeA">
+            <objects>
+                <viewController id="jor-YJ-ywb" customClass="LoginVK" customModule="challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UXp-4B-whe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="07e-1Z-zU3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="07e-1Z-zU3" firstAttribute="top" secondItem="UXp-4B-whe" secondAttribute="top" id="03Z-4y-2KQ"/>
+                            <constraint firstItem="07e-1Z-zU3" firstAttribute="trailing" secondItem="jrs-Sv-3fn" secondAttribute="trailing" id="l1C-Xl-ynj"/>
+                            <constraint firstItem="07e-1Z-zU3" firstAttribute="bottom" secondItem="jrs-Sv-3fn" secondAttribute="bottom" id="pOW-gZ-J3I"/>
+                            <constraint firstItem="07e-1Z-zU3" firstAttribute="leading" secondItem="jrs-Sv-3fn" secondAttribute="leading" id="qfh-DY-g96"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jrs-Sv-3fn"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="07e-1Z-zU3" id="lmj-lf-ma7"/>
+                        <segue destination="via-ce-vpv" kind="presentation" identifier="successLogin" id="953-vV-tij"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A0w-ZM-xvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69.599999999999994" y="812.74362818590714"/>
+        </scene>
         <!--Login Status View Controller-->
         <scene sceneID="T40-3Z-I48">
             <objects>
@@ -240,7 +275,7 @@
                             <outlet property="delegate" destination="LIE-8R-5i6" id="Wd9-Fd-RyS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Друзья" id="3CF-Ce-Oad" customClass="TVFriends">
+                    <navigationItem key="navigationItem" title="Друзья" id="3CF-Ce-Oad">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RQu-Eg-gsy">
                             <connections>
                                 <action selector="addFriend:" destination="LIE-8R-5i6" id="uv7-sg-caX"/>
@@ -304,13 +339,13 @@
         <!--Группы-->
         <scene sceneID="6mV-c4-Ucj">
             <objects>
-                <tableViewController id="g7c-wM-JOh" sceneMemberID="viewController">
+                <tableViewController id="g7c-wM-JOh" customClass="TVControllerMyGroups" customModule="challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ff3-am-9hF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="XUG-Vi-TZL" customClass="UITVCellOfMyGroup" customModule="challenge" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellOfMyGroup" rowHeight="60" id="XUG-Vi-TZL" customClass="UITVCellOfMyGroup" customModule="challenge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XUG-Vi-TZL" id="inr-ls-iQZ">
@@ -350,20 +385,23 @@
                             <outlet property="delegate" destination="g7c-wM-JOh" id="CHi-c2-edw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Группы" id="mRx-vL-Dm8" customClass="TVControllerMyGroups"/>
-                    <connections>
-                        <segue destination="WxT-yX-PAo" kind="show" id="Zcx-2s-Zl5"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Группы" id="mRx-vL-Dm8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aeu-Xs-cHA">
+                            <connections>
+                                <segue destination="WxT-yX-PAo" kind="show" id="rgl-Hb-hZ0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPL-41-hFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2832.8000000000002" y="805.54722638680664"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Controllers All Groups-->
         <scene sceneID="yja-Fo-8Bz">
             <objects>
-                <tableViewController id="WxT-yX-PAo" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cre-P6-OHJ" customClass="TVControllersAllGroups">
+                <tableViewController id="WxT-yX-PAo" customClass="TVControllersAllGroups" customModule="challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cre-P6-OHJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -373,7 +411,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="xuu-BQ-jdd" customClass="UITVCellOfAllGroup">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllGroup" rowHeight="60" id="xuu-BQ-jdd" customClass="UITVCellOfAllGroup" customModule="challenge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xuu-BQ-jdd" id="k2p-lR-Iaw">
@@ -421,6 +459,7 @@
                                     <outlet property="countOfMembersInGroup" destination="9eB-di-LGa" id="7Hh-0c-7E7"/>
                                     <outlet property="imageOfGroup" destination="MAU-I3-Bks" id="2Uc-pj-OeS"/>
                                     <outlet property="nameOfGroup" destination="TMO-4h-GlF" id="cuz-KI-g2d"/>
+                                    <segue destination="v4s-Eh-WTs" kind="unwind" identifier="addGroup" unwindAction="addGroup:" id="ErZ-1f-xmm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -431,6 +470,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibw-Ns-S61" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="v4s-Eh-WTs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3791" y="806"/>
         </scene>
@@ -473,4 +513,7 @@
             <point key="canvasLocation" x="1893.5999999999999" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="953-vV-tij"/>
+    </inferredMetricsTieBreakers>
 </document>
