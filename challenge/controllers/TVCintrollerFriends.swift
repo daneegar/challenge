@@ -17,7 +17,7 @@ class TVCintrollerFriends: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let responser = transportProtocol(token!)
-        responser.loadFriendPhoto()
+        responser.loadGroups()
 
 
     }
@@ -58,7 +58,7 @@ class TVCintrollerFriends: UITableViewController {
             //                autorisationStatus = false
             //            }
             
-            print(cell.friendsName.text)
+           // print(cell.friendsName.text)
         }
     }
     

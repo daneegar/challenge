@@ -29,6 +29,7 @@ class transportProtocol {
                 print(data)
             }
         }
+        task.resume()
     }
     
     func loadFriends (){
@@ -43,7 +44,7 @@ class transportProtocol {
         ]
         guard let url = urlConstructor.url else {return}
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
+        session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("*************************")
                 print(error)
@@ -73,19 +74,19 @@ class transportProtocol {
 //            }
 //        }
        
-        let path = "http://api.vk.com/method/friends.get"
-        let parameters: Parameters = [
-            "access_token": token,
-            "v": "5.52"
-        ]
-        Alamofire.request(path).responseJSON { (response) in
-            if let error = response.error{
-                print (error)
-            }
-            if let value = response.value {
-                print(response)
-            }
-        }
+//        let path = "http://api.vk.com/method/friends.get"
+//        let parameters: Parameters = [
+//            "access_token": token,
+//            "v": "5.52"
+//        ]
+//        Alamofire.request(path).responseJSON { (response) in
+//            if let error = response.error{
+//                print (error)
+//            }
+//            if let value = response.value {
+//                print(response)
+//            }
+//        }
         
     }
     
