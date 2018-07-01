@@ -10,14 +10,14 @@ import Foundation
 import Alamofire
 
 class transportProtocol {
-    var token: String?
+    var token: String
     
     init(_ token: String) {
         self.token = token
     }
     
-    func loadGroups (){
-        let path = ""
+    func loadFriends (){
+        let path = "https://api.vk.com/method/friends.get?v=5.52&access_token=\(token)"
         guard let url = URL(string: path) else {return}
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
@@ -27,24 +27,26 @@ class transportProtocol {
             }
             if let data = data {
                 print(data)
+                print("data Recieved")
             }
         }
         task.resume()
     }
     
-    func loadFriends (){
+    func loadMyGroups (){
         var urlConstructor = URLComponents()
-        print(#function)
-        urlConstructor.scheme = "http"
+        //print(#function)
+        urlConstructor.scheme = "https"
         urlConstructor.host = "api.vk.com"
-        urlConstructor.path = "/method/friends.get"
+        urlConstructor.path = "/method/groups.get"
         urlConstructor.queryItems = [
-            URLQueryItem(name: "access_token", value: token),
-            URLQueryItem(name: "v", value: "5.52")
+            URLQueryItem(name: "v", value: "5.52"),
+            URLQueryItem(name: "access_token", value: token)
         ]
         guard let url = urlConstructor.url else {return}
+        //print(url)
         let session = URLSession.shared
-        session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("*************************")
                 print(error)
@@ -54,39 +56,61 @@ class transportProtocol {
                 print(data)
                 print("*************************")
             }
+
         }
+        task.resume()
     }
     
     func loadFriendPhoto(){
-//        let path = "http://samples.openweathermap.org/data/2.5/forecast"
-//        let parameters: Parameters = [
-//            "q": cityName,
-//            "appid": apiKey
-//        ]
-//
-//        Alamofire.request(path, parameters: parameters).responseJSON { response in
-//            if let error = response.error {
-//                print(error)
-//                return
-//            }
-//            if let value = response.value {
-//                print(value)
-//            }
-//        }
-       
-//        let path = "http://api.vk.com/method/friends.get"
-//        let parameters: Parameters = [
-//            "access_token": token,
-//            "v": "5.52"
-//        ]
-//        Alamofire.request(path).responseJSON { (response) in
-//            if let error = response.error{
-//                print (error)
-//            }
-//            if let value = response.value {
-//                print(response)
-//            }
-//        }
+        let path = "https://api.vk.com/method/photos.get"
+        let parameters: Parameters = [
+            "access_token": token,
+            "v": "5.52",
+            "album_id": "wall"
+        ]
+        Alamofire.request(path, parameters: parameters).responseJSON { (response) in
+            if let error = response.error{
+                print (error)
+            }
+            if let value = response.value {
+                print(value)
+            }
+        }
+        
+    }
+    func loadAllGroups(){
+        let path = "https://api.vk.com/method/groups.get"
+        let parameters: Parameters = [
+            "access_token": token,
+            "v": "5.58",
+            "q": "",
+            "count": 15
+        ]
+        Alamofire.request(path, parameters: parameters).responseJSON { (response) in
+            if let error = response.error{
+                print (error)
+            }
+            if let value = response.value {
+                print(value)
+            }
+        }
+    }
+        func loadAllGroups(bySearching search: String){
+            let path = "https://api.vk.com/method/groups.search"
+            let parameters: Parameters = [
+                "access_token": token,
+                "v": "5.58",
+                "count": 15,
+                "q": search
+            ]
+            Alamofire.request(path, parameters: parameters).responseJSON { (response) in
+                if let error = response.error{
+                    print (error)
+                }
+                if let value = response.value {
+                    print(value)
+                }
+            }
         
     }
     

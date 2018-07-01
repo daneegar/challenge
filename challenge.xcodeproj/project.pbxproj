@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3009E2586B20197214206875 /* Pods_challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F731109AACF53F55F6F284 /* Pods_challenge.framework */; };
-		9207B6F620D4CFD1007B3343 /* LoginStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */; };
+		9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */; };
 		9243D15920E51CC500592102 /* LoginVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9243D15820E51CC500592102 /* LoginVK.swift */; };
 		9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246DE7520E11B0B00172989 /* UITVCellFriend.swift */; };
 		9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D25E20D40C0200D8C86F /* AppDelegate.swift */; };
@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		273E037F33111B3A9CF460D9 /* Pods-challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-challenge/Pods-challenge.release.xcconfig"; sourceTree = "<group>"; };
 		82F731109AACF53F55F6F284 /* Pods_challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusViewController.swift; sourceTree = "<group>"; };
+		9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9243D15820E51CC500592102 /* LoginVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVK.swift; sourceTree = "<group>"; };
 		9246DE7520E11B0B00172989 /* UITVCellFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellFriend.swift; sourceTree = "<group>"; };
 		9287D25B20D40C0200D8C86F /* challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +127,7 @@
 				92BDE50820E13492005BEB8F /* CVControllerPhotos.swift */,
 				92BDE50620E1344D005BEB8F /* TVCintrollerFriends.swift */,
 				9287D26020D40C0200D8C86F /* LoginViewController.swift */,
-				9207B6F520D4CFD1007B3343 /* LoginStatusViewController.swift */,
+				9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */,
 				9243D15820E51CC500592102 /* LoginVK.swift */,
 			);
 			path = controllers;
@@ -271,7 +271,7 @@
 				92BDE50920E13492005BEB8F /* CVControllerPhotos.swift in Sources */,
 				9287D26120D40C0200D8C86F /* LoginViewController.swift in Sources */,
 				9243D15920E51CC500592102 /* LoginVK.swift in Sources */,
-				9207B6F620D4CFD1007B3343 /* LoginStatusViewController.swift in Sources */,
+				9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */,
 				92BDE51320E137A0005BEB8F /* UICCPhoto.swift in Sources */,
 				92BFED4F20E4E8DC001C0305 /* Friends.swift in Sources */,
 				9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */,

@@ -25,10 +25,12 @@ class LoginVK: UIViewController {
             webView.load(request)
         }
     }
-    
+    //MARK: - Передача token во вью
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                if let friendsVC = segue.destination as? TVCintrollerFriends {
-                    friendsVC.token = self.token
+        //print(segue.identifier!)
+                if let friendsVC = segue.destination as? TabBarViewController {
+                    if let cathchedToken = self.token
+                    {friendsVC.token = cathchedToken}
                 }
     }
     
@@ -78,7 +80,6 @@ extension LoginVK: WKNavigationDelegate {
         if let token = params["access_token"] {
             self.token = token
             performSegue(withIdentifier: "successLogin", sender: nil)
-            print(token)
         }
         
         decisionHandler(.allow)

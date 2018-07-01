@@ -11,12 +11,15 @@ protocol AddGroupsProtocolDelegate {
     func AddGroup(nameOfGroup:String)
 }
 
-class TVControllersAllGroups: UITableViewController {
-
+class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
+    var token = ""
     var groups: [String] = ["c++", "Swift", "Python", "Java", "JavaScrip"]
     //let delegate: AddGroupsProtocolDelegate?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        let JSONAction = transportProtocol(token)
+        JSONAction.loadAllGroups()
         super.viewDidLoad()
     }
     
@@ -40,9 +43,14 @@ class TVControllersAllGroups: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-
-
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print(searchBar.text!)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        let JSONAction = transportProtocol(token)
+        JSONAction.loadAllGroups(bySearching: searchText)
+    }
 }
+

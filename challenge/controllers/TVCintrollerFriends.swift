@@ -9,17 +9,15 @@
 import UIKit
 
 class TVCintrollerFriends: UITableViewController {
-    var token: String? = ""
+    var token: String = ""
  
     
     var friends: [String] = ["Denis", "Vasilivar", "Marina", "Alyona", "Tatyana"]
     var selectedItemName: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        let responser = transportProtocol(token!)
-        responser.loadGroups()
-
-
+        let responser = transportProtocol(token)
+        responser.loadFriends()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +36,7 @@ class TVCintrollerFriends: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! UITVCellFriend
         
         cell.friendsName.text = friends[indexPath.row]
-        //cell.accessoryType = loadedItem.doneStatus ? .checkmark : .none
+        
         
         return cell
     }
@@ -52,13 +50,7 @@ class TVCintrollerFriends: UITableViewController {
             let cell = sender as! UITVCellFriend
             let destinatinoVC = segue.destination as! CVControllerPhotos
             destinatinoVC.name = cell.friendsName.text!
-            
-            //            if autorisationStatus {
-            //                //destinatinoVC.buttonStatus.setTitle("Success", for: .normal)
-            //                autorisationStatus = false
-            //            }
-            
-           // print(cell.friendsName.text)
+            destinatinoVC.token = self.token
         }
     }
     

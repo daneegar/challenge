@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "userLogined"{
-            let destinatinoVC = segue.destination as! LoginStatusViewController
+            let destinatinoVC = segue.destination as! TabBarViewController
             
 //            if autorisationStatus {
 //                //destinatinoVC.buttonStatus.setTitle("Success", for: .normal)
