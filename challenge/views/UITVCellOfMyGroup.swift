@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UITVCellOfMyGroup: UITableViewCell {
     @IBOutlet weak var nameOfGroup: UILabel!
@@ -21,6 +22,11 @@ class UITVCellOfMyGroup: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupWithData (_ group: ModelGroup){
+        nameOfGroup.text = group.name
+        imageOfGroup.kf.setImage(with: URL(string: group.photoUrl!))
     }
 
 }

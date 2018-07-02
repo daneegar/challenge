@@ -10,4 +10,8 @@ import UIKit
 
 class UICCPhoto: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
+    
+    func setByListOfPhoto (_ ph: ModelPhoto){
+        self.photo.kf.setImage(with: URL(string: ph.url))
+    }
 }

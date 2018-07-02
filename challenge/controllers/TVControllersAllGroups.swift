@@ -13,13 +13,21 @@ protocol AddGroupsProtocolDelegate {
 
 class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
     var token = ""
-    var groups: [String] = ["c++", "Swift", "Python", "Java", "JavaScrip"]
+    var groups: [ModelGroup] = []
     //let delegate: AddGroupsProtocolDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let JSONAction = transportProtocol(token)
-        JSONAction.loadAllGroups()
+        JSONAction.loadAllGroups { (catchedGroups, error) in
+            if let someError = error{
+                print(someError)
+            }
+            if let groups = catchedGroups {
+                self.groups = groups
+                self.tableView.reloadData()
+            }
+        }
         super.viewDidLoad()
     }
     
@@ -39,7 +47,8 @@ class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllGroup", for: indexPath) as! UITVCellOfAllGroup
-        cell.nameOfGroup.text = groups[indexPath.row]
+        //transportProtocol.loadMembersOfGroup(forGroup: groups[indexPath.row], token:token)
+        cell.setupWithModel(byTheGroup: groups[indexPath.row])
         return cell
     }
     
@@ -50,7 +59,15 @@ class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         let JSONAction = transportProtocol(token)
-        JSONAction.loadAllGroups(bySearching: searchText)
+        JSONAction.loadAllGroups(bySearching: searchText) { (catchedGroups, error) in
+            if let someError = error{
+                print (someError)
+            }
+            if let groups = catchedGroups {
+                self.groups = groups
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

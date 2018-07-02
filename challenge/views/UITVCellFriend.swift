@@ -23,5 +23,9 @@ class UITVCellFriend: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func setCell (byUser user: ModelUser){
+        self.friendsName.text = user.completeName
+        self.friendsImage.kf.setImage(with: URL(string: user.photoUrl))
+    }
 
 }

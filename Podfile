@@ -7,6 +7,7 @@ target 'challenge' do
 
   # Pods for challenge
   pod 'Alamofire'
-  
+  pod 'SwiftyJSON'
+  pod 'Kingfisher'
 
 end

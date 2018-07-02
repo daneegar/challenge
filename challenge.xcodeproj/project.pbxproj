@@ -11,6 +11,9 @@
 		9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */; };
 		9243D15920E51CC500592102 /* LoginVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9243D15820E51CC500592102 /* LoginVK.swift */; };
 		9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246DE7520E11B0B00172989 /* UITVCellFriend.swift */; };
+		9272BDC320E9F88500D73B22 /* ModelGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9272BDC220E9F88500D73B22 /* ModelGroup.swift */; };
+		9272BDC520E9F97B00D73B22 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9272BDC420E9F97B00D73B22 /* ModelUser.swift */; };
+		9272BDC720E9FA1200D73B22 /* ModelPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9272BDC620E9FA1200D73B22 /* ModelPhoto.swift */; };
 		9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D25E20D40C0200D8C86F /* AppDelegate.swift */; };
 		9287D26120D40C0200D8C86F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9287D26020D40C0200D8C86F /* LoginViewController.swift */; };
 		9287D26420D40C0200D8C86F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9287D26220D40C0200D8C86F /* Main.storyboard */; };
@@ -34,6 +37,9 @@
 		9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9243D15820E51CC500592102 /* LoginVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVK.swift; sourceTree = "<group>"; };
 		9246DE7520E11B0B00172989 /* UITVCellFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellFriend.swift; sourceTree = "<group>"; };
+		9272BDC220E9F88500D73B22 /* ModelGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGroup.swift; sourceTree = "<group>"; };
+		9272BDC420E9F97B00D73B22 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
+		9272BDC620E9FA1200D73B22 /* ModelPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPhoto.swift; sourceTree = "<group>"; };
 		9287D25B20D40C0200D8C86F /* challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9287D25E20D40C0200D8C86F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9287D26020D40C0200D8C86F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9272BDC820E9FCEE00D73B22 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9272BDC220E9F88500D73B22 /* ModelGroup.swift */,
+				9272BDC420E9F97B00D73B22 /* ModelUser.swift */,
+				9272BDC620E9FA1200D73B22 /* ModelPhoto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9287D25220D40C0200D8C86F = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +115,7 @@
 				9287D26520D40C0200D8C86F /* Assets.xcassets */,
 				9287D26A20D40C0200D8C86F /* Info.plist */,
 				9287D25E20D40C0200D8C86F /* AppDelegate.swift */,
+				9272BDC820E9FCEE00D73B22 /* Models */,
 				9287D27120D40C4400D8C86F /* controllers */,
 				9287D27020D40C3C00D8C86F /* views */,
 				9287D27220D40C5F00D8C86F /* support */,
@@ -229,10 +246,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-challenge/Pods-challenge-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,11 +294,14 @@
 				9243D15920E51CC500592102 /* LoginVK.swift in Sources */,
 				9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */,
 				92BDE51320E137A0005BEB8F /* UICCPhoto.swift in Sources */,
+				9272BDC520E9F97B00D73B22 /* ModelUser.swift in Sources */,
 				92BFED4F20E4E8DC001C0305 /* Friends.swift in Sources */,
 				9287D25F20D40C0200D8C86F /* AppDelegate.swift in Sources */,
+				9272BDC720E9FA1200D73B22 /* ModelPhoto.swift in Sources */,
 				9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */,
 				92BDE51120E136B6005BEB8F /* UITVCellOfAllGroup.swift in Sources */,
 				92BDE50F20E135A4005BEB8F /* UITVCellOfMyGroup.swift in Sources */,
+				9272BDC320E9F88500D73B22 /* ModelGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

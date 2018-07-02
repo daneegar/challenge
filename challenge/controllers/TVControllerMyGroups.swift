@@ -9,18 +9,19 @@
 import UIKit
 
 class TVControllerMyGroups: UITableViewController {
-    var listOfgroups: [String] = ["Denis", "Vasilivar", "Marina", "Alyona", "Tatyana"]
+    //var listOfgroups: [String] = ["Denis", "Vasilivar", "Marina", "Alyona", "Tatyana"]
     var token: String = ""
+    var listOfMyGroups: [ModelGroup] = []
     
     @IBAction func addGroup (_ segue: UIStoryboardSegue){
         if segue.identifier == "addGroup"{
             let segueTable = segue.source as! TVControllersAllGroups
             let selectedCell = segueTable.tableView.indexPathForSelectedRow
             let selectedGroup = segueTable.groups[(selectedCell?.row)!]
-            if  !listOfgroups.contains(selectedGroup){
-                listOfgroups.append(selectedGroup)
-                self.tableView.reloadData()
-            }
+//            if  !listOfgroups.contains(selectedGroup){
+//                listOfgroups.append(selectedGroup)
+//                self.tableView.reloadData()
+//            }
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,7 +33,15 @@ class TVControllerMyGroups: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let JSONAction = transportProtocol(token)
-        JSONAction.loadMyGroups()
+        JSONAction.loadMyGroups { (catchedGroups, error) in
+            if let error = error {
+                print(error)
+            }
+            if let listOfgroups = catchedGroups {
+                self.listOfMyGroups = listOfgroups
+                self.tableView?.reloadData()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,13 +52,15 @@ class TVControllerMyGroups: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfgroups.count
+        return listOfMyGroups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellOfMyGroup", for: indexPath) as! UITVCellOfMyGroup
-        cell.nameOfGroup.text = listOfgroups[indexPath.row]
+//        cell.nameOfGroup.text = listOfMyGroups[indexPath.row].name
+        let group = listOfMyGroups[indexPath.row]
+        cell.setupWithData(group)
         
         return cell
     }

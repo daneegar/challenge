@@ -13,11 +13,22 @@ private let reuseIdentifier = "Cell"
 class CVControllerPhotos: UICollectionViewController {
     var name: String? = nil
     var token = ""
+    var userID = ""
+    var photos: [ModelPhoto] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         title = name
         let JSONAction = transportProtocol(token)
-        JSONAction.loadFriendPhoto()
+        JSONAction.loadFriendPhoto(byID: userID) { (cathedPhotos, error) in
+            if let someError = error {
+                print(someError)
+                //TODO - the error handler
+            }
+            if let photos = cathedPhotos {
+                self.photos = photos
+                self.collectionView?.reloadData()
+            }
+        }
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -31,17 +42,18 @@ class CVControllerPhotos: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! UICCPhoto
+        cell.setByListOfPhoto(photos[indexPath.row])
     
         // Configure the cell
     
