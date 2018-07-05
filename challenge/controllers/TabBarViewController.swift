@@ -22,22 +22,21 @@ override func viewDidLoad() {
     
             if let childViews = tabBarViesCollections?.first as? UINavigationController{
             do {
-                let catchedTable = try childViews.viewControllers[0] as? TVCintrollerFriends
+                let catchedTable = childViews.viewControllers[0] as? TVCintrollerFriends
                 catchedTable?.token = self.token
             } catch {
                 print(error)
             }
             if let childViews = tabBarViesCollections?[1] as? UINavigationController{
-                let catchedTable = try childViews.viewControllers[0] as? TVControllerMyGroups
                 do {
-                    catchedTable?.token = self.token
+                    let catchedTable = try childViews.viewControllers[0] as! TVControllerMyGroups
+                    catchedTable.token = self.token
                 } catch {
                     print(error)
                 }
             }
     }
-        //print(token)
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {

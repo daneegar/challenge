@@ -81,9 +81,9 @@ class LoginViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "userLogined"{
-            let destinatinoVC = segue.destination as! TabBarViewController
-            
+//        if segue.identifier == "userLogined"{
+//            let destinatinoVC = segue.destination as! TabBarViewController
+//            
 //            if autorisationStatus {
 //                //destinatinoVC.buttonStatus.setTitle("Success", for: .normal)
 //                autorisationStatus = false
@@ -93,5 +93,5 @@ class LoginViewController: UIViewController {
         }
     }
     
-}
+
 

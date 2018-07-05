@@ -8,17 +8,22 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class ModelGroup {
-    var name = ""
-    var membersCount: String = "0"
-    var photoUrl: String?
-    var groupID: String?
+class ModelGroup: Object {
+    @objc dynamic var name = ""
+    @objc dynamic var membersCount: String = "0"
+    @objc dynamic var photoUrl: String?
+    @objc dynamic var groupID: String?
     //TODO: - declare an init
-    init(json: JSON) {
+    convenience init(json: JSON) {
+        self.init()
         self.name = json["name"].stringValue
         self.photoUrl = json["photo_100"].stringValue
         self.groupID = json["id"].stringValue
     }
     
+    static func addID(from json: JSON)-> String {
+        return json["members_count"].stringValue
+    }
 }

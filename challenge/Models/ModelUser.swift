@@ -8,18 +8,20 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class ModelUser{
+class ModelUser: Object {
     var completeName: String {
         return "\(firstName) \(lastName)"
     }
-    var firstName = ""
-    var lastName = ""
-    var photoUrl = ""
-    var userID = ""
+    @objc dynamic var firstName = ""
+    @objc dynamic var lastName = ""
+    @objc dynamic var photoUrl = ""
+    @objc dynamic var userID = ""
 
     
-    init(json: JSON) {
+    convenience init(json: JSON) {
+        self.init()
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
         self.photoUrl = json["photo_100"].stringValue

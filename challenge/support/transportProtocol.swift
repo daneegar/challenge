@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 class transportProtocol {
     var token: String
@@ -17,11 +18,12 @@ class transportProtocol {
         self.token = token
     }
     
+    //MARK - Loading Friends
     func loadFriends (completion:(([ModelUser]?, Error?)-> Void)?) {
         let path = "https://api.vk.com/method/friends.get?v=5.80&access_token=\(token)&fields=photo_100&name_case=nom"
         guard let url = URL(string: path) else {return}
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) {(data, response, error) in
             if let error = error {
                 print(error)
                 return
@@ -29,15 +31,17 @@ class transportProtocol {
             if let data = data {
                 if let json = try? JSON(data: data) {
                     let friends = json["response"]["items"].arrayValue.map { ModelUser(json: $0)}
+                    //
                     DispatchQueue.main.async {
                         completion?(friends, nil)
+                        self.saveData(someRealmArray: friends)
                     }
                 }
             }
         }
         task.resume()
     }
-    
+    //MARK: - Load list of my groups.
     func loadMyGroups (completion: (([ModelGroup]?, Error?) -> Void)?){
         var urlConstructor = URLComponents()
 
@@ -63,6 +67,7 @@ class transportProtocol {
                 if let json = try? JSON(data: data) {
                     let groups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
                     DispatchQueue.main.async {
+                        self.saveData(someRealmArray: groups)
                         completion?(groups, nil)
                     }
                     
@@ -72,7 +77,7 @@ class transportProtocol {
         }
         task.resume()
     }
-    
+    //MARK: - Load Freind's photos
     func loadFriendPhoto(byID ownerID: String, completion: (([ModelPhoto]?, Error?) -> Void)?){
         let path = "https://api.vk.com/method/photos.getAll"
         let parameters: Parameters = [
@@ -83,12 +88,15 @@ class transportProtocol {
         Alamofire.request(path, parameters: parameters).responseJSON { (response) in
             
             if let error = response.error{
+                print(error)
             }
             if let value = response.data {
                 if let json = try? JSON(data: value) {
                     let photos = json["response"]["items"].arrayValue.map { ModelPhoto(json: $0)}
                     DispatchQueue.main.async {
+                        self.saveData(someRealmArray: photos)
                         completion?(photos, nil)
+                        
                     }
 
                 }
@@ -96,7 +104,9 @@ class transportProtocol {
         }
         
     }
+    //MARK: - Load Any Groups(DEFAULT search parametr "Бизнес")
     func loadAllGroups(completion: (([ModelGroup]?, Error?)->Void)?){
+        var groups: [ModelGroup] = []
         let path = "https://api.vk.com/method/groups.search"
         let parameters: Parameters = [
             "access_token": token,
@@ -110,18 +120,21 @@ class transportProtocol {
             }
             if let value = response.data {
                 if let json = try? JSON(data: value) {
-                    //print (json)
-                    let groups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
-                    DispatchQueue.main.async {
-                        completion?(groups, nil)
-                    }
-                    
+                    groups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
+                    self.loadMembersOfGroup(forGroup: groups, completion: { (groupsWithMembers, error) in
+                        DispatchQueue.main.async {
+                            completion?(groupsWithMembers, nil)
+                        }
+                    })
                 }
             }
+
         }
     }
+    //MARK: - Load SearchViewGroups
     func loadAllGroups(bySearching search: String, completion:(([ModelGroup]?, Error?)->Void)?){
             let path = "https://api.vk.com/method/groups.search"
+        var groups: [ModelGroup] = []
             let parameters: Parameters = [
                 "access_token": token,
                 "v": "5.58",
@@ -134,24 +147,33 @@ class transportProtocol {
                 }
                 if let value = response.data {
                     if let json = try? JSON(data: value) {
-                        let groups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
-                        DispatchQueue.main.async {
-                            completion?(groups, nil)
-                        }
-                        
+                        let someGroups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
+                        self.loadMembersOfGroup(forGroup: someGroups, completion: { (groupsWithIds, error) in
+                            DispatchQueue.main.async {
+                                completion?(groupsWithIds, nil)
+                            }
+                        })
+
                     }
+                } else {
+                    return
                 }
-        }
+            }
+        
+        
+
+        
     }
     
-    static func loadMembersOfGroup(forGroup group: ModelGroup, token: String){
-        let path = "https://api.vk.com/method/groups.getMembers"
+    func loadMembersOfGroup(forGroup groups: [ModelGroup], completion:(([ModelGroup]?, Error?)->Void)?){
+        let path = "https://api.vk.com/method/groups.getById"
+        let groupId = idsOfGroups(Groups: groups)
+        //print(groupId)
         let parameters: Parameters = [
             "access_token": token,
-            "group_id": group.groupID!,
+            "group_ids": groupId,
             "v": "5.8",
-            "count": "1"
-            
+            "fields": "members_count"
         ]
         Alamofire.request(path, parameters: parameters).responseJSON { (response) in
             if let error = response.error{
@@ -159,13 +181,73 @@ class transportProtocol {
             }
             if let value = response.data {
                 if let json = try? JSON(data: value) {
-                    print(json)
-                    let count = json["response"]["count"].stringValue
-                    group.membersCount = count
-                    
+                    //print(json)
+                    let countMembersArray = json["response"].arrayValue.map {ModelGroup.addID(from: $0)}
+                    var i = 0
+                    for eachCount in countMembersArray{
+                        groups[i].membersCount = eachCount
+                        //print(groups)
+                        i = i + 1
+                    }
+                    completion?(groups,nil)
                 }
             }
         }
     }
     
+     func idsOfGroups(Groups: [ModelGroup]) -> String{
+        var result = ""
+        var counter = 0
+        for eachGroup in Groups {
+            counter = counter + 1
+            result.append(eachGroup.groupID!)
+            if counter != Groups.count{
+                result.append(",")
+            }
+        }
+        return result
+    }
+    //MARK: - Realm Methods
+    func saveData (someRealmArray array: [Any]){
+        let realm = try! Realm()
+        if let arrayOfModelUser  = array as? [ModelUser] {
+            do {
+                 try realm.write {
+                    realm.add(arrayOfModelUser)
+                    try realm.commitWrite()
+                    print("Data Added as array of ModelUser")
+                }
+            } catch {
+                print (error)
+                return
+            }
+        }
+        else if let arrayOfModelPhoto  = array as? [ModelPhoto] {
+            do{
+                try realm.write {
+                    realm.add(arrayOfModelPhoto)
+                    print("Data Added as array of ModelPhoto")
+                    try realm.commitWrite()
+                    
+                }
+            } catch {
+                print(error)
+                return
+            }
+        }
+        else if let arrayOfGroups = array as? [ModelGroup]{
+                do {
+                    try realm.write {
+                        realm.add(arrayOfGroups)
+                        print("Data Added as array of ModelGroup")
+                        try realm.commitWrite()
+                    }
+                } catch {
+                    print(error)
+                    return
+                }
+        } else {
+            print("data didn't save")
+        }
+    }
 }

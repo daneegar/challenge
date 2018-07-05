@@ -14,19 +14,19 @@ class TVControllerMyGroups: UITableViewController {
     var listOfMyGroups: [ModelGroup] = []
     
     @IBAction func addGroup (_ segue: UIStoryboardSegue){
-        if segue.identifier == "addGroup"{
-            let segueTable = segue.source as! TVControllersAllGroups
-            let selectedCell = segueTable.tableView.indexPathForSelectedRow
-            let selectedGroup = segueTable.groups[(selectedCell?.row)!]
+//        if segue.identifier == "addGroup"{
+//            let segueTable = segue.source as! TVControllersAllGroups
+//            let selectedCell = segueTable.tableView.indexPathForSelectedRow
+//            let selectedGroup = segueTable.groups[(selectedCell?.row)!]
 //            if  !listOfgroups.contains(selectedGroup){
 //                listOfgroups.append(selectedGroup)
 //                self.tableView.reloadData()
 //            }
-        }
+//        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  let VCTable = segue.destination as? TVControllersAllGroups{
-            VCTable.token = self.token
+            VCTable.token = token
         }
     }
     
@@ -70,5 +70,5 @@ class TVControllerMyGroups: UITableViewController {
     }
     
     
-    
 }
+
