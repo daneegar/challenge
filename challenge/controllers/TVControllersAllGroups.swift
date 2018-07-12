@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import RealmSwift
+
 protocol AddGroupsProtocolDelegate {
     func AddGroup(nameOfGroup:String)
 }
 
 class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
-    var token = ""
+    var token: String? = ""
     var groups: [ModelGroup] = []
-    //let delegate: AddGroupsProtocolDelegate?
+    var realm = try! Realm()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDataFromLocalStorage()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - Data methods
+    func loadDataFromLocalStorage(){
+        let catchedGroups = Array(realm.objects(ModelGroup.self))
+        groups = catchedGroups
+    }
+    
+    
+    func loadDataFromAPI(){
+        guard let token = self.token else {return}
         let JSONAction = transportProtocol(token)
         JSONAction.loadAllGroups { (catchedGroups, error) in
             if let someError = error{
@@ -28,13 +47,9 @@ class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
             }
         }
-        super.viewDidLoad()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     
     
@@ -57,7 +72,7 @@ class TVControllersAllGroups: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        guard let token = self.token else {return}
         let JSONAction = transportProtocol(token)
         JSONAction.loadAllGroups(bySearching: searchText) { (catchedGroups, error) in
             if let someError = error{

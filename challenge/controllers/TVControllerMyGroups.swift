@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TVControllerMyGroups: UITableViewController {
     //var listOfgroups: [String] = ["Denis", "Vasilivar", "Marina", "Alyona", "Tatyana"]
-    var token: String = ""
+    var token: String? = ""
     var listOfMyGroups: [ModelGroup] = []
+    var realm = try! Realm()
     
     @IBAction func addGroup (_ segue: UIStoryboardSegue){
 //        if segue.identifier == "addGroup"{
@@ -24,14 +26,14 @@ class TVControllerMyGroups: UITableViewController {
 //            }
 //        }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  let VCTable = segue.destination as? TVControllersAllGroups{
-            VCTable.token = token
-        }
-    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //MARK: - Data methods
+    func loadDataFromLocalStorage(){
+        let catchedGroups = Array(realm.objects(ModelGroup.self))
+        listOfMyGroups = catchedGroups
+    }
+    func loadDataFromAPI(){
+        guard let token = self.token else {return}
         let JSONAction = transportProtocol(token)
         JSONAction.loadMyGroups { (catchedGroups, error) in
             if let error = error {
@@ -42,6 +44,18 @@ class TVControllerMyGroups: UITableViewController {
                 self.tableView?.reloadData()
             }
         }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  let VCTable = segue.destination as? TVControllersAllGroups{
+            VCTable.token = token
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadDataFromLocalStorage()
     }
     
     override func didReceiveMemoryWarning() {

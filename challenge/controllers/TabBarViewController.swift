@@ -11,7 +11,7 @@ import UIKit
 
 
 class TabBarViewController: UITabBarController {
-    var token = ""
+    var token: String = ""
     
 //    @IBOutlet weak var buttonStatus: UIButton!
     
@@ -21,19 +21,12 @@ override func viewDidLoad() {
         let tabBarViesCollections = viewControllers
     
             if let childViews = tabBarViesCollections?.first as? UINavigationController{
-            do {
                 let catchedTable = childViews.viewControllers[0] as? TVCintrollerFriends
                 catchedTable?.token = self.token
-            } catch {
-                print(error)
-            }
+
             if let childViews = tabBarViesCollections?[1] as? UINavigationController{
-                do {
-                    let catchedTable = try childViews.viewControllers[0] as! TVControllerMyGroups
-                    catchedTable.token = self.token
-                } catch {
-                    print(error)
-                }
+                let catchedTable = childViews.viewControllers[0] as? TVControllerMyGroups
+                catchedTable?.token = self.token
             }
     }
 

@@ -7,36 +7,54 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TVCintrollerFriends: UITableViewController {
-    var token: String = ""
- 
-    
+    var token: String? = ""
     var friends: [ModelUser] = []
+    var realm = try! Realm()
     
-    var selectedItemName: String? = nil
+
     override func viewDidLoad() {
+        self.tableView.addSubview(self.refreshControl!)
         super.viewDidLoad()
+        loadDataFromLocalStorage()
+        
+    }
+    //MARK: - load data methods
+    func loadDataFromAPI(){
+        guard let token = token else { return }
         let responser = transportProtocol(token)
-        responser.loadFriends { (listOfFriends, error) in
+        responser.loadFriends { (error) in
             if let anError = error{
                 print(anError)
                 //TODO:- handle error
             }
-            if let catchedFriends = listOfFriends {
-                self.friends = catchedFriends
-                self.tableView.reloadData()
-            }
         }
     }
-
+    func loadDataFromLocalStorage() {
+        let catchedFriends = Array(realm.objects(ModelUser.self))
+        friends = catchedFriends
+    }
+    
+    //MARK: - pull to refersh
+    override lazy var refreshControl: UIRefreshControl? = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(TVCintrollerFriends.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        loadDataFromAPI()
+        refreshControl.endRefreshing()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }

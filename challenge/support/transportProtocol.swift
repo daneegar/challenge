@@ -19,21 +19,21 @@ class transportProtocol {
     }
     
     //MARK - Loading Friends
-    func loadFriends (completion:(([ModelUser]?, Error?)-> Void)?) {
+    func loadFriends (completion:((Error?)-> Void)?) {
         let path = "https://api.vk.com/method/friends.get?v=5.80&access_token=\(token)&fields=photo_100&name_case=nom"
         guard let url = URL(string: path) else {return}
         let session = URLSession.shared
         let task = session.dataTask(with: url) {(data, response, error) in
             if let error = error {
+                completion?(error)
                 print(error)
                 return
             }
             if let data = data {
                 if let json = try? JSON(data: data) {
                     let friends = json["response"]["items"].arrayValue.map { ModelUser(json: $0)}
-                    //
                     DispatchQueue.main.async {
-                        completion?(friends, nil)
+                        completion?(nil)
                         self.saveData(someRealmArray: friends)
                     }
                 }
@@ -44,7 +44,7 @@ class transportProtocol {
     //MARK: - Load list of my groups.
     func loadMyGroups (completion: (([ModelGroup]?, Error?) -> Void)?){
         var urlConstructor = URLComponents()
-
+        
         urlConstructor.scheme = "https"
         urlConstructor.host = "api.vk.com"
         urlConstructor.path = "/method/groups.get"
@@ -54,7 +54,7 @@ class transportProtocol {
             URLQueryItem(name: "extended", value: "1")
         ]
         guard let url = urlConstructor.url else {return}
-
+        
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -73,7 +73,7 @@ class transportProtocol {
                     
                 }
             }
-
+            
         }
         task.resume()
     }
@@ -98,7 +98,7 @@ class transportProtocol {
                         completion?(photos, nil)
                         
                     }
-
+                    
                 }
             }
         }
@@ -128,40 +128,39 @@ class transportProtocol {
                     })
                 }
             }
-
+            
         }
     }
     //MARK: - Load SearchViewGroups
     func loadAllGroups(bySearching search: String, completion:(([ModelGroup]?, Error?)->Void)?){
-            let path = "https://api.vk.com/method/groups.search"
-        var groups: [ModelGroup] = []
-            let parameters: Parameters = [
-                "access_token": token,
-                "v": "5.58",
-                "count": 100,
-                "q": search
-            ]
-            Alamofire.request(path, parameters: parameters).responseJSON { (response) in
-                if let error = response.error{
-                    print (error)
-                }
-                if let value = response.data {
-                    if let json = try? JSON(data: value) {
-                        let someGroups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
-                        self.loadMembersOfGroup(forGroup: someGroups, completion: { (groupsWithIds, error) in
-                            DispatchQueue.main.async {
-                                completion?(groupsWithIds, nil)
-                            }
-                        })
-
-                    }
-                } else {
-                    return
-                }
+        let path = "https://api.vk.com/method/groups.search"
+        let parameters: Parameters = [
+            "access_token": token,
+            "v": "5.58",
+            "count": 100,
+            "q": search
+        ]
+        Alamofire.request(path, parameters: parameters).responseJSON { (response) in
+            if let error = response.error{
+                print (error)
             }
+            if let value = response.data {
+                if let json = try? JSON(data: value) {
+                    let someGroups = json["response"]["items"].arrayValue.map { ModelGroup(json: $0)}
+                    self.loadMembersOfGroup(forGroup: someGroups, completion: { (groupsWithIds, error) in
+                        DispatchQueue.main.async {
+                            completion?(groupsWithIds, nil)
+                        }
+                    })
+                    
+                }
+            } else {
+                return
+            }
+        }
         
         
-
+        
         
     }
     
@@ -195,7 +194,7 @@ class transportProtocol {
         }
     }
     
-     func idsOfGroups(Groups: [ModelGroup]) -> String{
+    func idsOfGroups(Groups: [ModelGroup]) -> String{
         var result = ""
         var counter = 0
         for eachGroup in Groups {
@@ -208,46 +207,30 @@ class transportProtocol {
         return result
     }
     //MARK: - Realm Methods
-    func saveData (someRealmArray array: [Any]){
+    func saveData <T:Object> (someRealmArray array: [T]){
         let realm = try! Realm()
-        if let arrayOfModelUser  = array as? [ModelUser] {
-            do {
-                 try realm.write {
-                    realm.add(arrayOfModelUser)
-                    try realm.commitWrite()
-                    print("Data Added as array of ModelUser")
-                }
-            } catch {
-                print (error)
-                return
+        do {
+            try realm.write {
+                let itemsForRemove = realm.objects(T.self)
+                realm.delete(itemsForRemove)
+                realm.add(array)
+                try realm.commitWrite()
             }
-        }
-        else if let arrayOfModelPhoto  = array as? [ModelPhoto] {
-            do{
-                try realm.write {
-                    realm.add(arrayOfModelPhoto)
-                    print("Data Added as array of ModelPhoto")
-                    try realm.commitWrite()
-                    
-                }
-            } catch {
-                print(error)
-                return
-            }
-        }
-        else if let arrayOfGroups = array as? [ModelGroup]{
-                do {
-                    try realm.write {
-                        realm.add(arrayOfGroups)
-                        print("Data Added as array of ModelGroup")
-                        try realm.commitWrite()
-                    }
-                } catch {
-                    print(error)
-                    return
-                }
-        } else {
-            print("data didn't save")
+        } catch {
+            print(error)
+            return
         }
     }
+    
+    //    static func readData <T:Object> (object array: inout [T]) -> T{
+    //        let realm = try! Realm()
+    //        do {
+    //            try realm.write {
+    //                let itemsForRead = realm.objects(T.self)
+    //                array.append(itemsForRead)
+    //            }
+    //        } catch {
+    //            print(error)
+    //        }
+    //    }
 }
