@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3009E2586B20197214206875 /* Pods_challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F731109AACF53F55F6F284 /* Pods_challenge.framework */; };
 		9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */; };
+		92382909212ECD740059F659 /* VCMyWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92382908212ECD740059F659 /* VCMyWall.swift */; };
+		9238290B212ECF830059F659 /* ModelPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9238290A212ECF830059F659 /* ModelPost.swift */; };
 		9243D15920E51CC500592102 /* LoginVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9243D15820E51CC500592102 /* LoginVK.swift */; };
 		9246DE7620E11B0B00172989 /* UITVCellFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246DE7520E11B0B00172989 /* UITVCellFriend.swift */; };
 		9272BDC320E9F88500D73B22 /* ModelGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9272BDC220E9F88500D73B22 /* ModelGroup.swift */; };
@@ -35,6 +37,8 @@
 		273E037F33111B3A9CF460D9 /* Pods-challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-challenge/Pods-challenge.release.xcconfig"; sourceTree = "<group>"; };
 		82F731109AACF53F55F6F284 /* Pods_challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9207B6F520D4CFD1007B3343 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		92382908212ECD740059F659 /* VCMyWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCMyWall.swift; sourceTree = "<group>"; };
+		9238290A212ECF830059F659 /* ModelPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPost.swift; sourceTree = "<group>"; };
 		9243D15820E51CC500592102 /* LoginVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVK.swift; sourceTree = "<group>"; };
 		9246DE7520E11B0B00172989 /* UITVCellFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITVCellFriend.swift; sourceTree = "<group>"; };
 		9272BDC220E9F88500D73B22 /* ModelGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGroup.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				9272BDC220E9F88500D73B22 /* ModelGroup.swift */,
+				9238290A212ECF830059F659 /* ModelPost.swift */,
 				9272BDC420E9F97B00D73B22 /* ModelUser.swift */,
 				9272BDC620E9FA1200D73B22 /* ModelPhoto.swift */,
 			);
@@ -141,6 +146,7 @@
 			children = (
 				92BDE50C20E1352C005BEB8F /* TVControllersAllGroups.swift */,
 				92BDE50A20E134D3005BEB8F /* TVControllerMyGroups.swift */,
+				92382908212ECD740059F659 /* VCMyWall.swift */,
 				92BDE50820E13492005BEB8F /* CVControllerPhotos.swift */,
 				92BDE50620E1344D005BEB8F /* TVCintrollerFriends.swift */,
 				9287D26020D40C0200D8C86F /* LoginViewController.swift */,
@@ -297,6 +303,8 @@
 				9287D26120D40C0200D8C86F /* LoginViewController.swift in Sources */,
 				9243D15920E51CC500592102 /* LoginVK.swift in Sources */,
 				9207B6F620D4CFD1007B3343 /* TabBarViewController.swift in Sources */,
+				9238290B212ECF830059F659 /* ModelPost.swift in Sources */,
+				92382909212ECD740059F659 /* VCMyWall.swift in Sources */,
 				92BDE51320E137A0005BEB8F /* UICCPhoto.swift in Sources */,
 				9272BDC520E9F97B00D73B22 /* ModelUser.swift in Sources */,
 				92BFED4F20E4E8DC001C0305 /* Friends.swift in Sources */,

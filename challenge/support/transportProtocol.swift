@@ -158,12 +158,8 @@ class transportProtocol {
                 return
             }
         }
-        
-        
-        
-        
     }
-    
+    //MARK:- Load count Members of Groups
     func loadMembersOfGroup(forGroup groups: [ModelGroup], completion:(([ModelGroup]?, Error?)->Void)?){
         let path = "https://api.vk.com/method/groups.getById"
         let groupId = idsOfGroups(Groups: groups)
@@ -222,15 +218,52 @@ class transportProtocol {
         }
     }
     
-    //    static func readData <T:Object> (object array: inout [T]) -> T{
-    //        let realm = try! Realm()
-    //        do {
-    //            try realm.write {
-    //                let itemsForRead = realm.objects(T.self)
-    //                array.append(itemsForRead)
-    //            }
-    //        } catch {
-    //            print(error)
-    //        }
-    //    }
+    //MARK: - Load Posts From the Wall
+    func loadPosts(withOffset offset: Int = 0, completion:(([ModelPost]?, Error?, Int?)->Void)?){
+        let path = "https://api.vk.com/method/wall.get"
+        let parameters: Parameters = [
+            "access_token": token,
+            "v": "5.80",
+            "offset": String(offset),
+            "count": "100"
+            ]
+        Alamofire.request(path, parameters: parameters).responseJSON { (response) in
+            if let error = response.error{
+                print (error)
+            }
+            if let value = response.data {
+                if let json = try? JSON(data: value) {
+                    print(json)
+                    let posts = json["response"]["items"].arrayValue.map {ModelPost(json: $0)}
+                    //print(posts)
+                    let count = Int(json["response"]["count"].stringValue)
+                    completion?(posts,nil,count)
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

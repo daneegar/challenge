@@ -19,7 +19,6 @@ class TabBarViewController: UITabBarController {
 override func viewDidLoad() {
         super.viewDidLoad()
         let tabBarViesCollections = viewControllers
-    
             if let childViews = tabBarViesCollections?.first as? UINavigationController{
                 let catchedTable = childViews.viewControllers[0] as? TVCintrollerFriends
                 catchedTable?.token = self.token
@@ -28,6 +27,11 @@ override func viewDidLoad() {
                 let catchedTable = childViews.viewControllers[0] as? TVControllerMyGroups
                 catchedTable?.token = self.token
             }
+                if let childViews = tabBarViesCollections?[2]{
+                    let catchedTable = childViews as? VCMyWall
+                    catchedTable?.token = self.token
+                }
+                
     }
 
     }

@@ -215,6 +215,7 @@
                     <connections>
                         <segue destination="UWV-Xn-lcE" kind="relationship" relationship="viewControllers" id="UT3-Zk-bNE"/>
                         <segue destination="GzA-oh-HaN" kind="relationship" relationship="viewControllers" id="ft3-eD-FJo"/>
+                        <segue destination="EDM-4O-nln" kind="relationship" relationship="viewControllers" id="oKD-TJ-wPV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xid-Kf-kRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,6 +477,48 @@
             </objects>
             <point key="canvasLocation" x="3789.5999999999999" y="805.54722638680664"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="VAP-u6-Uta">
+            <objects>
+                <viewController id="EDM-4O-nln" customClass="VCMyWall" customModule="challenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yxU-LU-cTt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mm5-7T-KDh">
+                                <rect key="frame" x="244" y="123" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Постов на вашей стене:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M26-Fx-pfL">
+                                <rect key="frame" x="16" y="123" width="191" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Самый первый пост датируется:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLB-4j-Shd">
+                                <rect key="frame" x="16" y="166" width="260" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qO2-95-y8E"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="W3H-3s-KdD"/>
+                    <connections>
+                        <outlet property="PostsCounter" destination="mm5-7T-KDh" id="kmc-Lj-5De"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EIn-LK-cHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.6" y="805.54722638680664"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="o0v-Ac-zvr">
             <objects>
@@ -516,6 +559,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w6L-K5-OSr"/>
+        <segue reference="953-vV-tij"/>
     </inferredMetricsTieBreakers>
 </document>

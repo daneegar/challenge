@@ -20,7 +20,7 @@ class CVControllerPhotos: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = name
-        loadDataFromLocalStorage()
+        loadDataFromAPI()
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     //MARK: - data load methods
